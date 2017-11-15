@@ -43,15 +43,15 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         }else if getname == "united-states" {
             country = "us"
         }else if getname == "united-kingdom" {
-            country = "uk"
+            country = "gb"
         }else if getname == "australia" {
-            country = "ac"
+            country = "au"
         }else if getname == "germany" {
             country = "de"
         }else if getname == "italy" {
             country = "it"
         }
-        let jsonURL = "https://newsapi.org/v1/sources?language=en&country=\(country)&key=f82b74f968a840d29cc8d70077d6951b"
+        let jsonURL = "https://newsapi.org/v1/sources?country=\(country)&key=f82b74f968a840d29cc8d70077d6951b"
         
         print("url:", jsonURL)
         print("country:", country)
