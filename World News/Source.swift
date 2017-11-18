@@ -10,6 +10,7 @@ import UIKit
 
 class Source: NSObject {
     
+    var id: String?
     var name: String?
     var desc: String?
     var url: String?

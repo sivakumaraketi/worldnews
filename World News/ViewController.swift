@@ -17,6 +17,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     // Set the spacing between sections
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        tableView.backgroundColor = UIColor.white
         return 20;
     }
     
@@ -33,15 +34,16 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         cell.imgImage.image = (imageArr[indexPath.row] as! UIImage)
         cell.lblName.text! = name[indexPath.row] as! String
-        cell.layer.cornerRadius=10
-        
+        cell.lblName.textColor = txtcolor
+        cell.lblName.highlightedTextColor = txtcolor
         
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+    
+        return 120
     }
     
    
@@ -52,7 +54,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         // Do any additional setup after loading the view.
         
-        name = ["india","united-states","united-kingdom","australia","germany","italy"]
+        name = ["India","United-States","United-Kingdom","Australia","Germany","Italy"]
         countrycode = ["in","us","ac","de","it"]
         imageArr = [UIImage(named: "india")!,UIImage(named: "united-states")!,UIImage(named: "united-kingdom")!,UIImage(named: "australia")!,UIImage(named: "germany")!,UIImage(named: "italy")!]
     }
@@ -66,6 +68,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         let Storyboard = UIStoryboard(name: "Main", bundle: nil)
         let Dvc = Storyboard.instantiateViewController(withIdentifier: "PaperInfoViewController") as! PaperInfoViewController
         Dvc.getname = name[indexPath.row] as! String
+       
         
         
         self.navigationController?.pushViewController(Dvc, animated: true)

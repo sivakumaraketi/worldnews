@@ -10,10 +10,12 @@ import UIKit
 
 class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
-
     @IBOutlet weak var tableview: UITableView!
     
+  
+    
     var getname = String()
+    var getcountrycode = String()
     var sources: [Source]? = []
     
     
@@ -29,6 +31,17 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         cell.url.text = self.sources?[indexPath.item].url
         return cell
     }
+    
+    // Set the spacing between sections
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        tableView.backgroundColor = UIColor.white
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 220
+    }
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,17 +51,17 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         self.navigationItem.title = getname
         var country = ""
         
-        if getname == "india" {
+        if getname == "India" {
             country = "in"
-        }else if getname == "united-states" {
+        }else if getname == "United-States" {
             country = "us"
-        }else if getname == "united-kingdom" {
+        }else if getname == "United-Kingdom" {
             country = "gb"
-        }else if getname == "australia" {
+        }else if getname == "Australia" {
             country = "au"
-        }else if getname == "germany" {
+        }else if getname == "Germany" {
             country = "de"
-        }else if getname == "italy" {
+        }else if getname == "Italy" {
             country = "it"
         }
         let jsonURL = "https://newsapi.org/v1/sources?country=\(country)&key=f82b74f968a840d29cc8d70077d6951b"
@@ -70,8 +83,9 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
                         
                         for sourcesFromJson in sourcesFromJson{
                             let source = Source()
-                            if let name = sourcesFromJson["name"] as? String, let desc = sourcesFromJson["description"] as? String, let url = sourcesFromJson["url"] as? String{
+                            if let id = sourcesFromJson["id"] as? String,let name = sourcesFromJson["name"] as? String, let desc = sourcesFromJson["description"] as? String, let url = sourcesFromJson["url"] as? String{
                                 
+                                source.id = id
                                 source.name = name
                                 source.desc = desc
                                 source.url = url
@@ -85,17 +99,26 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
                     DispatchQueue.main.async {
                         self.tableview.reloadData()
                     }
-                    // Set the spacing between sections
-                    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                        return 20
-                    }
+                   
                     
                 }catch  let jsonErr{
                     print("Erro serializing json:", jsonErr)}
             }; task.resume()
             
         }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let Dvc = Storyboard.instantiateViewController(withIdentifier: "PaperInfoDetailViewController") as! PaperInfoDetailViewController
+        Dvc.getname = (self.sources?[indexPath.item].name)!
+        Dvc.getid = (self.sources?[indexPath.item].id)!
         
         
+        self.navigationController?.pushViewController(Dvc, animated: true)
+        
+        
+    }
+    
+        
+    
     }
 

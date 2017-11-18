@@ -1,21 +1,20 @@
 //
-//  TableViewCell.swift
+//  PaperDetailTableViewCell.swift
 //  World News
 //
-//  Created by Siva Kumar Aketi on 11/1/17.
+//  Created by Siva Kumar Aketi on 11/16/17.
 //  Copyright © 2017 Siva Kumar Aketi. All rights reserved.
 //
 
 import UIKit
 
-
-
-class TableViewCell: UITableViewCell {
+class PaperDetailTableViewCell: UITableViewCell {
     
- 
 
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var imgImage: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var desc: UILabel!
+    @IBOutlet weak var author: UILabel!
+    @IBOutlet weak var urlimage: UIImageView!
     
     @IBOutlet weak var backgroundview: UIView!
     
@@ -26,13 +25,14 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+        
         backgroundview.layer.cornerRadius=10
         backgroundview.layer.masksToBounds = false
-       backgroundview.backgroundColor = bgcolor
-       
-        // Configure the view for the selected state
+        backgroundview.backgroundColor = paperbgcolor
+        
+        
     }
-   
 
 }
- 
