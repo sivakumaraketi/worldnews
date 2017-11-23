@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    var rechability:Reachability?
+    
     var name:NSArray = []
     var imageArr:NSArray = []
     var countrycode:NSArray = []
@@ -51,12 +53,22 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        self.rechability = Reachability.init()
         
+        if ((self.rechability!.connection) != .none){
         // Do any additional setup after loading the view.
         
         name = ["India","United-States","United-Kingdom","Australia","Germany","Italy"]
         countrycode = ["in","us","ac","de","it"]
         imageArr = [UIImage(named: "india")!,UIImage(named: "united-states")!,UIImage(named: "united-kingdom")!,UIImage(named: "australia")!,UIImage(named: "germany")!,UIImage(named: "italy")!]
+        }else {
+            print("Internet connection FAILED")
+            let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+            
+        }
     }
     
     override func didReceiveMemoryWarning() {

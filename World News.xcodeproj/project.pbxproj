@@ -25,6 +25,8 @@
 		7D85DB0D1FBD10AC00E10B4D /* PaperInfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85DB0C1FBD10AC00E10B4D /* PaperInfoDetailViewController.swift */; };
 		7D85DB111FBD630600E10B4D /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85DB101FBD630600E10B4D /* Article.swift */; };
 		7D85DB151FBDA16D00E10B4D /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D85DB141FBDA16D00E10B4D /* Color.swift */; };
+		7DD6A6D11FC5D7B500A0C7B2 /* WebviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6A6D01FC5D7B500A0C7B2 /* WebviewViewController.swift */; };
+		7DD6A6D31FC68EA400A0C7B2 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DD6A6D21FC68EA400A0C7B2 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,8 @@
 		7D85DB0C1FBD10AC00E10B4D /* PaperInfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaperInfoDetailViewController.swift; sourceTree = "<group>"; };
 		7D85DB101FBD630600E10B4D /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		7D85DB141FBDA16D00E10B4D /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		7DD6A6D01FC5D7B500A0C7B2 /* WebviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebviewViewController.swift; sourceTree = "<group>"; };
+		7DD6A6D21FC68EA400A0C7B2 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +128,7 @@
 				7D2A50451FA94D05005DC594 /* TableViewCell.swift */,
 				7D501F191FAE778B00C7686B /* PaperInfoViewController.swift */,
 				7D85DB0C1FBD10AC00E10B4D /* PaperInfoDetailViewController.swift */,
+				7DD6A6D01FC5D7B500A0C7B2 /* WebviewViewController.swift */,
 				7D2A4FFB1FA71337005DC594 /* Main.storyboard */,
 				7D85DB0A1FBD100200E10B4D /* PaperDetailTableViewCell.swift */,
 				7D1FA77D1FB8013C0062FC70 /* PaperTableViewCell.swift */,
@@ -134,6 +139,7 @@
 				7D2A50271FA71D5C005DC594 /* Assets */,
 				7D2A50031FA71337005DC594 /* Info.plist */,
 				7D85DB141FBDA16D00E10B4D /* Color.swift */,
+				7DD6A6D21FC68EA400A0C7B2 /* Reachability.swift */,
 			);
 			path = "World News";
 			sourceTree = "<group>";
@@ -304,6 +310,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D85DB091FBA601D00E10B4D /* Source.swift in Sources */,
+				7DD6A6D11FC5D7B500A0C7B2 /* WebviewViewController.swift in Sources */,
+				7DD6A6D31FC68EA400A0C7B2 /* Reachability.swift in Sources */,
 				7D85DB0B1FBD100200E10B4D /* PaperDetailTableViewCell.swift in Sources */,
 				7D85DB111FBD630600E10B4D /* Article.swift in Sources */,
 				7D85DB151FBDA16D00E10B4D /* Color.swift in Sources */,

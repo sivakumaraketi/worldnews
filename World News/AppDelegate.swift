@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let backImage = UIImage(named: "left-arrow")?.withRenderingMode(.alwaysOriginal).withAlignmentRectInsets(UIEdgeInsetsMake(0, 10, -3, 40))
+        UINavigationBar.appearance().backIndicatorImage = backImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
+        UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-180, 0), for: UIBarMetrics.default)
+      
+        
         return true
     }
 

@@ -9,6 +9,9 @@
 import UIKit
 
 class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
+    @IBOutlet weak var activity: UIActivityIndicatorView!
+    var rechability:Reachability?
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -50,6 +53,9 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.rechability = Reachability.init()
+        
+        if ((self.rechability!.connection) != .none){
         // Do any additional setup after loading the view.
         
         print("url:", getid)
@@ -97,6 +103,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
                 }
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
+                    self.activity.stopAnimating()
                 }
                 // Set the spacing between sections
                 func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -107,8 +114,27 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
                 print("Erro serializing json:", jsonErr)}
         }; task.resume()
         
+        }else {
+            print("Internet connection FAILED")
+            let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let Dvc = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
+       Dvc.url = self.articles?[indexPath.item].url
+        
+        
+        self.navigationController?.pushViewController(Dvc, animated: true)
+        
+        
     }
     }
+
 
 extension UIImageView {
     

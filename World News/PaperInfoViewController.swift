@@ -10,9 +10,10 @@ import UIKit
 
 class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    @IBOutlet weak var activity: UIActivityIndicatorView!
     @IBOutlet weak var tableview: UITableView!
     
-  
+    var rechability:Reachability?
     
     var getname = String()
     var getcountrycode = String()
@@ -42,10 +43,15 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         return 220
     }
+    
+
    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.rechability = Reachability.init()
+        
+        if ((self.rechability!.connection) != .none){
         // Do any additional setup after loading the view.
         
         self.navigationItem.title = getname
@@ -98,14 +104,22 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
                     }
                     DispatchQueue.main.async {
                         self.tableview.reloadData()
+                        self.activity.stopAnimating()
                     }
                    
                     
                 }catch  let jsonErr{
                     print("Erro serializing json:", jsonErr)}
             }; task.resume()
+           
+        }else {
+            print("Internet connection FAILED")
+            let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
             
         }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let Storyboard = UIStoryboard(name: "Main", bundle: nil)
         let Dvc = Storyboard.instantiateViewController(withIdentifier: "PaperInfoDetailViewController") as! PaperInfoDetailViewController
