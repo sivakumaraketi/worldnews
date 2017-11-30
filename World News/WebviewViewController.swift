@@ -38,14 +38,15 @@ class WebviewViewController: UIViewController,UIWebViewDelegate {
         
         self.navigationItem.rightBarButtonItem = RightBarButton
         
-        print("getname:", url)
+       // print("getname:", url)
         loadaddress()
         
         
         }else {
-            print("Internet connection FAILED")
+          
+           print("Internet connection FAILED")
             let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+           alert.show()
             
             
         }

@@ -9,7 +9,7 @@
 import UIKit
 
 let bgcolor = UIColor.init(netHex: 0xFFA4A2)
-let paperbgcolor = UIColor.init(netHex: 0xf7f9fc)
+let paperbgcolor = UIColor.init(netHex: 0xdcdfe2)
 let txtcolor = UIColor.init(netHex: 0x47525E)
 
 extension UIColor {

@@ -29,9 +29,12 @@ class TableViewCell: UITableViewCell {
         backgroundview.layer.cornerRadius=10
         backgroundview.layer.masksToBounds = false
        backgroundview.backgroundColor = bgcolor
+
        
         // Configure the view for the selected state
     }
+    
+    
    
 
 }

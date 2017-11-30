@@ -24,28 +24,35 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
         return name.count
     }
     
-  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
         
-       
-        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        cell.layer.cornerRadius=10
+    
+    
         cell.imgImage.image = (imageArr[indexPath.row] as! UIImage)
         cell.lblName.text! = name[indexPath.row] as! String
         cell.lblName.textColor = txtcolor
         cell.lblName.highlightedTextColor = txtcolor
         
         
+        
+        
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     
-        return 120
+    
+        return 100
     }
     
    
@@ -56,10 +63,11 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
        
         self.rechability = Reachability.init()
         
+        
         if ((self.rechability!.connection) != .none){
         // Do any additional setup after loading the view.
         
-        name = ["India","United-States","United-Kingdom","Australia","Germany","Italy"]
+        name = ["India","United States","United Kingdom","Australia","Germany","Italy"]
         countrycode = ["in","us","ac","de","it"]
         imageArr = [UIImage(named: "india")!,UIImage(named: "united-states")!,UIImage(named: "united-kingdom")!,UIImage(named: "australia")!,UIImage(named: "germany")!,UIImage(named: "italy")!]
         }else {

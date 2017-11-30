@@ -20,13 +20,18 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
     var sources: [Source]? = []
     
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sources?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PaperTableViewCell", for: indexPath) as! PaperTableViewCell
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        cell.layer.cornerRadius=10
+        
         cell.title.text = self.sources?[indexPath.item].name
         cell.desc.text = self.sources?[indexPath.item].desc
         cell.url.text = self.sources?[indexPath.item].url
@@ -59,9 +64,9 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         if getname == "India" {
             country = "in"
-        }else if getname == "United-States" {
+        }else if getname == "United States" {
             country = "us"
-        }else if getname == "United-Kingdom" {
+        }else if getname == "United Kingdom" {
             country = "gb"
         }else if getname == "Australia" {
             country = "au"
@@ -72,8 +77,8 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         }
         let jsonURL = "https://newsapi.org/v1/sources?country=\(country)&key=f82b74f968a840d29cc8d70077d6951b"
         
-        print("url:", jsonURL)
-        print("country:", country)
+        //print("url:", jsonURL)
+       // print("country:", country)
             guard let url = URL(string: jsonURL) else{
                 return}
             
@@ -113,6 +118,7 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
             }; task.resume()
            
         }else {
+          
             print("Internet connection FAILED")
             let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()

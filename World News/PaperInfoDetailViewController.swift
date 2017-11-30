@@ -23,11 +23,17 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 350
+        return 370
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PaperDetailTableViewCell", for: indexPath) as! PaperDetailTableViewCell
+        
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.clear
+        cell.selectedBackgroundView = backgroundView
+        cell.layer.cornerRadius=10
+        
         cell.author.text = self.articles?[indexPath.item].author ?? ""
         cell.title.text = self.articles?[indexPath.item].title ?? ""
         cell.desc.text = self.articles?[indexPath.item].desc
@@ -58,13 +64,13 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         if ((self.rechability!.connection) != .none){
         // Do any additional setup after loading the view.
         
-        print("url:", getid)
+       // print("url:", getid)
         
          self.navigationItem.title = getname
         
         let jsonURL = "https://newsapi.org/v1/articles?source=\(getid)&apikey=f82b74f968a840d29cc8d70077d6951b"
         
-        print("url:", jsonURL)
+      //  print("url:", jsonURL)
       
         guard let url = URL(string: jsonURL) else{
             return}
@@ -85,9 +91,11 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
                     
                     for articlesFromJson in articlesFromJson{
                         let article = Article()
-                        if let author = articlesFromJson["author"] as? String,let title = articlesFromJson["title"] as? String, let desc = articlesFromJson["description"] as? String, let url = articlesFromJson["url"] as? String, let urlimage = articlesFromJson["urlToImage"] as? String{
+                        if let author = articlesFromJson["author"] as? AnyObject,let title = articlesFromJson["title"] as? String, let desc = articlesFromJson["description"] as? String, let url = articlesFromJson["url"] as? String, let urlimage = articlesFromJson["urlToImage"] as? String{
                             
-                            article.author = author
+                            if article.author != "<null>"{
+                                article.author = author as? String
+                            }
                             article.title = title
                             article.desc = desc
                             article.url = url

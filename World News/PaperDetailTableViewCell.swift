@@ -28,7 +28,7 @@ class PaperDetailTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
         
-        backgroundview.layer.cornerRadius=10
+        backgroundview.layer.cornerRadius=0
         backgroundview.layer.masksToBounds = false
         backgroundview.backgroundColor = paperbgcolor
         
