@@ -10,6 +10,16 @@ import UIKit
 
 class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
+    
+    
+   
+    @IBAction func ShareClicked(_ sender: Any) {
+        
+        let activityVC = UIActivityViewController(activityItems: [urlvalue], applicationActivities: nil)
+        activityVC.popoverPresentationController?.sourceView = self.view
+        self.present(activityVC, animated: true, completion: nil)
+    }
+   
     @IBOutlet weak var activity: UIActivityIndicatorView!
     var rechability:Reachability?
    
@@ -25,9 +35,13 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         
         return 370
     }
+    var urlvalue = String()
+   
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PaperDetailTableViewCell", for: indexPath) as! PaperDetailTableViewCell
+        
+        
         
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.clear
@@ -37,7 +51,13 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         cell.author.text = self.articles?[indexPath.item].author ?? ""
         cell.title.text = self.articles?[indexPath.item].title ?? ""
         cell.desc.text = self.articles?[indexPath.item].desc
-        //cell.url.text = self.articles?[indexPath.item].url
+        
+       urlvalue = (self.articles?[indexPath.item].url)!
+        
+      print("urlvalue1:", urlvalue)
+        
+        
+       // cell.url.text = self.articles?[indexPath.item].url
         
         let urlimage = self.articles?[indexPath.item].urlimage
         if urlimage != nil{
@@ -47,6 +67,12 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         }
         //cell.urlimage.downloadImage(from: (self.articles?[indexPath.item].urlimage)!)
         return cell
+        
+    }
+    
+    @IBAction func MoreLinkClicked(_ sender: UIButton) {
+        
+        self.performSegue(withIdentifier: "MoreLinkVC", sender: urlvalue)
     }
 
     
@@ -67,6 +93,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
        // print("url:", getid)
         
          self.navigationItem.title = getname
+         self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         let jsonURL = "https://newsapi.org/v1/articles?source=\(getid)&apikey=f82b74f968a840d29cc8d70077d6951b"
         
@@ -113,10 +140,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
                     self.tableview.reloadData()
                     self.activity.stopAnimating()
                 }
-                // Set the spacing between sections
-                func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-                    return 20
-                }
+               
                 
             }catch  let jsonErr{
                 print("Erro serializing json:", jsonErr)}
@@ -131,17 +155,55 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let Storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let Dvc = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
-       Dvc.url = self.articles?[indexPath.item].url
+    
+  /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+        self.performSegue(withIdentifier: "MorelinkVC", sender: urlvalue)
+
+       // let Storyboard = UIStoryboard(name: "Main", bundle: nil)
+        //let Dvc = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
+      //  Dvc.url = self.articles?[indexPath.item].url
+        
+       // self.navigationController?.pushViewController(Dvc, animated: true)
         
         
-        self.navigationController?.pushViewController(Dvc, animated: true)
+       // self.performSegue(withIdentifier: "MorelinkVC", sender: url)
+        
+    }*/
+    
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        let vc =  segue.destination as! WebviewViewController
+        vc.url = sender as? String
+        
+        // Determine what the segue destination is
+        
+        if segue.identifier == "MoreLinkVC"
+        {
+       
+                let vc =  segue.destination as? WebviewViewController
+            vc?.url = urlvalue
+            
         
         
+               // vc?.url = "Arthur Dent"
+            
+          
+            print("urlfinalvalue:", urlvalue)
+            
+       
+            
+            
+            
+        }
     }
-    }
+}
+
+    //  let index = self.collectionView.indexPathsForSelectedItems?.url
+    //Dvc.url = self.articles?[indexPath.item].url
+    // Pass the selected object to the new view controller.
+
 
 
 extension UIImageView {

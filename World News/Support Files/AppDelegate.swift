@@ -22,10 +22,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             // Override point for customization after application launch.
             
-            let backImage = UIImage(named: "left-arrow")?.withRenderingMode(.alwaysOriginal).withAlignmentRectInsets(UIEdgeInsetsMake(0, 10, -3, 40))
-            UINavigationBar.appearance().backIndicatorImage = backImage
-            UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
-            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: UIBarMetrics.default)
+            // Change the appearance of back button
+           
+           
+            //setBackgroundImage(navBgImage, for: .default)
+     /*  let backImage = UIImage(named: "left-arrow")?.withRenderingMode(.alwaysOriginal).stretchableImage(withLeftCapWidth: 0, topCapHeight: 0)
+          UINavigationBar.appearance().backIndicatorImage = backImage
+            UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage*/
+            
+            
+                // disable image stretching by defining left and top caps.
+            let backArrowImage  = UIImage(named: "left-arrow") // set your back button image here
+            let renderedImage = backArrowImage?.withRenderingMode(.alwaysOriginal)
+            UINavigationBar.appearance().backIndicatorImage = renderedImage
+            UINavigationBar.appearance().backIndicatorTransitionMaskImage = renderedImage
+         
+            
+        //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: UIBarMetrics.default)
             
             
         }

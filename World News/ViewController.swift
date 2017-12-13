@@ -18,10 +18,12 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     // Set the spacing between sections
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        tableView.backgroundColor = UIColor.white
+   /* func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        tableView.backgroundColor = UIColor.green
+        UITableViewCell.appearance().backgroundColor = UIColor.clear
+        
         return 20;
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     

@@ -104,8 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				7D2A4FF61FA71336005DC594 /* World News */,
-				7D2A500B1FA71337005DC594 /* World NewsTests */,
-				7D2A50161FA71337005DC594 /* World NewsUITests */,
 				7D2A4FF51FA71336005DC594 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,23 +121,20 @@
 		7D2A4FF61FA71336005DC594 /* World News */ = {
 			isa = PBXGroup;
 			children = (
-				7D2A4FF71FA71337005DC594 /* AppDelegate.swift */,
 				7D2A4FF91FA71337005DC594 /* ViewController.swift */,
 				7D2A50451FA94D05005DC594 /* TableViewCell.swift */,
 				7D501F191FAE778B00C7686B /* PaperInfoViewController.swift */,
 				7D85DB0C1FBD10AC00E10B4D /* PaperInfoDetailViewController.swift */,
 				7DD6A6D01FC5D7B500A0C7B2 /* WebviewViewController.swift */,
 				7D2A4FFB1FA71337005DC594 /* Main.storyboard */,
+				7D2A50001FA71337005DC594 /* LaunchScreen.storyboard */,
 				7D85DB0A1FBD100200E10B4D /* PaperDetailTableViewCell.swift */,
 				7D1FA77D1FB8013C0062FC70 /* PaperTableViewCell.swift */,
 				7D85DB081FBA601D00E10B4D /* Source.swift */,
 				7D85DB101FBD630600E10B4D /* Article.swift */,
 				7D2A4FFE1FA71337005DC594 /* Assets.xcassets */,
-				7D2A50001FA71337005DC594 /* LaunchScreen.storyboard */,
-				7D2A50271FA71D5C005DC594 /* Assets */,
-				7D2A50031FA71337005DC594 /* Info.plist */,
-				7D85DB141FBDA16D00E10B4D /* Color.swift */,
-				7DD6A6D21FC68EA400A0C7B2 /* Reachability.swift */,
+				7DED42F01FDA79090013A0DE /* Support Files */,
+				7DD75D221FCFCE6800A72B24 /* Networks */,
 			);
 			path = "World News";
 			sourceTree = "<group>";
@@ -170,6 +165,27 @@
 				7D2A50311FA71D5C005DC594 /* share-5.png */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		7DD75D221FCFCE6800A72B24 /* Networks */ = {
+			isa = PBXGroup;
+			children = (
+				7DD6A6D21FC68EA400A0C7B2 /* Reachability.swift */,
+			);
+			path = Networks;
+			sourceTree = "<group>";
+		};
+		7DED42F01FDA79090013A0DE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7D2A4FF71FA71337005DC594 /* AppDelegate.swift */,
+				7D2A50031FA71337005DC594 /* Info.plist */,
+				7D85DB141FBDA16D00E10B4D /* Color.swift */,
+				7D2A50161FA71337005DC594 /* World NewsUITests */,
+				7D2A500B1FA71337005DC594 /* World NewsTests */,
+				7D2A50271FA71D5C005DC594 /* Assets */,
+			);
+			path = "Support Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -487,7 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "World News/Info.plist";
+				INFOPLIST_FILE = "World News/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sivakumaraketi.World-News";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -501,7 +517,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "World News/Info.plist";
+				INFOPLIST_FILE = "World News/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sivakumaraketi.World-News";
 				PRODUCT_NAME = "$(TARGET_NAME)";

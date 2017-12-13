@@ -18,6 +18,7 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
     var getname = String()
     var getcountrycode = String()
     var sources: [Source]? = []
+    var articleUrl = String()
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,15 +35,32 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         
         cell.title.text = self.sources?[indexPath.item].name
         cell.desc.text = self.sources?[indexPath.item].desc
-        cell.url.text = self.sources?[indexPath.item].url
+      //  cell.url.text = self.sources?[indexPath.item].url
+        articleUrl = (self.sources?[indexPath.item].url)!
+        cell.url.text = articleUrl
+        cell.url.isUserInteractionEnabled = true
+        
+        let tap = UITapGestureRecognizer(target: self,action: #selector(PaperInfoViewController.tapUrl))
+        cell.url.addGestureRecognizer(tap)
         return cell
     }
     
-    // Set the spacing between sections
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        tableView.backgroundColor = UIColor.white
-        return 20
+    @objc func tapUrl(){
+        print("tapped")
+        let Storyboard = UIStoryboard(name: "Main",bundle:nil)
+        let DVC = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
+        DVC.url = articleUrl
+        self.navigationController?.pushViewController(DVC, animated: true)
+        
     }
+    
+    // Set the spacing between sections
+  /*  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        //tableView.backgroundColor = UIColor.white
+        return 20
+    }*/
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -60,6 +78,7 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         // Do any additional setup after loading the view.
         
         self.navigationItem.title = getname
+       self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         var country = ""
         
         if getname == "India" {
