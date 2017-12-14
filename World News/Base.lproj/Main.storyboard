@@ -301,7 +301,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fau-iz-8w7">
                                                     <rect key="frame" x="8" y="8" width="359" height="370"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7k-qM-zM5">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y7k-qM-zM5">
                                                             <rect key="frame" x="8" y="8" width="310" height="72"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="72" id="e7j-vT-4YQ"/>
@@ -355,13 +355,14 @@
                                                                 <constraint firstAttribute="width" constant="150" id="FOp-jT-6gL"/>
                                                                 <constraint firstAttribute="height" constant="30" id="Zp0-3V-04R"/>
                                                             </constraints>
+                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <state key="normal" title="More News &gt;&gt;"/>
                                                             <connections>
                                                                 <segue destination="d0T-Is-Qc3" kind="show" identifier="MoreLinkVC" id="LYP-eD-Fg9"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="BrX-lG-acZ" secondAttribute="trailing" constant="8" id="2nt-L4-KMr"/>
                                                         <constraint firstAttribute="trailing" secondItem="rQl-tq-RbY" secondAttribute="trailing" constant="5" id="6SD-8g-M2i"/>
@@ -383,6 +384,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="Fau-iz-8w7" firstAttribute="top" secondItem="OAN-Hn-4VN" secondAttribute="top" constant="8" id="LZ2-XI-xo6"/>
                                                 <constraint firstItem="Fau-iz-8w7" firstAttribute="leading" secondItem="OAN-Hn-4VN" secondAttribute="leading" constant="8" id="bnI-nb-d1f"/>
@@ -391,7 +393,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="author" destination="TPn-TZ-pJ5" id="XOA-Q8-gyS"/>
-                                            <outlet property="backgroundview" destination="sHn-hg-zr6" id="pLj-f4-kj1"/>
+                                            <outlet property="backgroundview" destination="Fau-iz-8w7" id="ThJ-7l-pKb"/>
                                             <outlet property="desc" destination="aw1-c2-7qu" id="T6C-sC-H6B"/>
                                             <outlet property="title" destination="y7k-qM-zM5" id="Ajx-3E-hdQ"/>
                                             <outlet property="urlimage" destination="BrX-lG-acZ" id="EQh-fe-GJp"/>
@@ -438,7 +440,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <color key="barTintColor" red="0.85095531089999998" green="0.31856048190000003" blue="0.36755675259999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>

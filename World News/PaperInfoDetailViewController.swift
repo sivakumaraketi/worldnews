@@ -48,7 +48,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         cell.selectedBackgroundView = backgroundView
         cell.layer.cornerRadius=10
         
-        cell.author.text = self.articles?[indexPath.item].author ?? ""
+        cell.author.text = self.articles?[indexPath.item].author ?? "NA"
         cell.title.text = self.articles?[indexPath.item].title ?? ""
         cell.desc.text = self.articles?[indexPath.item].desc
         
