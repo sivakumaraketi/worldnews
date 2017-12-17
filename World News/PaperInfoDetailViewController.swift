@@ -8,16 +8,24 @@
 
 import UIKit
 
-class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITabBarDelegate {
     
+    @IBOutlet weak var topbar: UITabBarItem!
     
-    
-   
-    @IBAction func ShareClicked(_ sender: Any) {
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        //This method will be called when user changes tab.
+        if(item.tag == 1) {
+            //your code for tab item 1
+            print("1 selected")
+        }
+        else if(item.tag == 2) {
+            //your code for tab item 2
+            
+            print("2 selected")
+        }else if(item.tag == 3){
+            print("3 selected")
+        }
         
-        let activityVC = UIActivityViewController(activityItems: [urlvalue], applicationActivities: nil)
-        activityVC.popoverPresentationController?.sourceView = self.view
-        self.present(activityVC, animated: true, completion: nil)
     }
    
     @IBOutlet weak var activity: UIActivityIndicatorView!
@@ -51,8 +59,24 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         cell.author.text = self.articles?[indexPath.item].author ?? "NA"
         cell.title.text = self.articles?[indexPath.item].title ?? ""
         cell.desc.text = self.articles?[indexPath.item].desc
+        //cell.morelink.addTarget(self, action: #selector(PaperDetailTableViewCell.morelink(_:)), for: .touchUpInside)
         
-       urlvalue = (self.articles?[indexPath.item].url)!
+       var urlvalue = (self.articles?[indexPath.item].url)!
+        
+        cell.onButtonTapped = {
+            print("more link tapped")
+            let Storyboard = UIStoryboard(name: "Main",bundle:nil)
+            let DVC = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
+            DVC.url = urlvalue
+            self.navigationController?.pushViewController(DVC, animated: true)
+        }
+        
+        cell.onShareTapped = {
+            let activityVC = UIActivityViewController(activityItems: [urlvalue], applicationActivities: nil)
+            activityVC.popoverPresentationController?.sourceView = self.view
+            self.present(activityVC, animated: true, completion: nil)
+        }
+        
         
       print("urlvalue1:", urlvalue)
         
@@ -81,9 +105,13 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
     var getname = String()
     var getid = String()
     var articles: [Article]? = []
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
 
         self.rechability = Reachability.init()
         
@@ -95,7 +123,10 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
          self.navigationItem.title = getname
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        let jsonURL = "https://newsapi.org/v1/articles?source=\(getid)&apikey=f82b74f968a840d29cc8d70077d6951b"
+        //let jsonURL = "https://newsapi.org/v2/articles?source=\(getid)&apikey=f82b74f968a840d29cc8d70077d6951b"
+          
+           let jsonURL = "https://newsapi.org/v2/top-headlines?sources=\(getid)&apiKey=f82b74f968a840d29cc8d70077d6951b"
+            
         
       //  print("url:", jsonURL)
       

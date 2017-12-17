@@ -9,8 +9,8 @@
 import UIKit
 
 class PaperDetailTableViewCell: UITableViewCell {
-    
 
+    
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var desc: UILabel!
     @IBOutlet weak var author: UILabel!
@@ -18,9 +18,24 @@ class PaperDetailTableViewCell: UITableViewCell {
     
     @IBOutlet weak var backgroundview: UIView!
     
+    var onButtonTapped : (() -> Void)? = nil
+     var onShareTapped : (() -> Void)? = nil
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    @IBAction func shareLink(_ sender: Any) {
+        if let onShareTapped = self.onShareTapped{
+            onShareTapped()
+        }
+    }
+    // More link IBAction
+    @IBAction func moreNews(_ sender: Any) {
+        if let onButtonTapped = self.onButtonTapped{
+            onButtonTapped()
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

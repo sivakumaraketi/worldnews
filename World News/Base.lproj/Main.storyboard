@@ -319,7 +319,7 @@
                                                             </constraints>
                                                             <state key="normal" image="share-5.png"/>
                                                             <connections>
-                                                                <action selector="ShareClicked:" destination="wtn-r6-tbv" eventType="touchUpInside" id="pHN-5y-z03"/>
+                                                                <action selector="shareLink:" destination="8Cb-jz-laf" eventType="touchUpInside" id="ggr-rW-smy"/>
                                                             </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BrX-lG-acZ">
@@ -358,7 +358,7 @@
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                             <state key="normal" title="More News &gt;&gt;"/>
                                                             <connections>
-                                                                <segue destination="d0T-Is-Qc3" kind="show" identifier="MoreLinkVC" id="LYP-eD-Fg9"/>
+                                                                <action selector="moreNews:" destination="8Cb-jz-laf" eventType="touchUpInside" id="K9D-ks-4Hq"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -402,9 +402,28 @@
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="wtn-r6-tbv" id="9gQ-VD-HLl"/>
-                                    <outlet property="delegate" destination="wtn-r6-tbv" id="KFY-rT-eK4"/>
+                                    <outlet property="delegate" destination="wtn-r6-tbv" id="3Og-T0-IWH"/>
                                 </connections>
                             </tableView>
+                            <tabBar hidden="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8K-mQ-KVe">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="49" id="fmf-zm-ddy"/>
+                                    <constraint firstAttribute="width" constant="375" id="ozF-hm-bIq"/>
+                                </constraints>
+                                <items>
+                                    <tabBarItem title="Top" id="7CB-rf-3Es">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
+                                    </tabBarItem>
+                                    <tabBarItem title="Popular" id="6os-Ni-iMy">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
+                                    </tabBarItem>
+                                    <tabBarItem title="Latest" id="neu-5S-2fi">
+                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
+                                    </tabBarItem>
+                                </items>
+                            </tabBar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1zC-3e-ele">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <color key="color" red="1" green="0.72683487270000002" blue="0.71042793670000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -412,12 +431,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="g8K-mQ-KVe" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="7EN-OR-oj8"/>
+                            <constraint firstItem="g8K-mQ-KVe" firstAttribute="centerX" secondItem="bbW-GI-fJz" secondAttribute="centerX" id="9EO-pi-Owe"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="Bfi-vE-6dJ"/>
+                            <constraint firstItem="g8K-mQ-KVe" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="N3g-N2-3Vr"/>
                             <constraint firstItem="1zC-3e-ele" firstAttribute="centerX" secondItem="bbW-GI-fJz" secondAttribute="centerX" id="SQY-EJ-u3J"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="top" secondItem="bbW-GI-fJz" secondAttribute="top" id="WDi-4b-I6T"/>
                             <constraint firstItem="1zC-3e-ele" firstAttribute="centerY" secondItem="bbW-GI-fJz" secondAttribute="centerY" id="XhP-fW-qsQ"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="bottom" secondItem="JKH-43-n22" secondAttribute="bottom" id="a0b-ag-ARn"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="bya-Ef-2pR"/>
+                            <constraint firstItem="JKH-43-n22" firstAttribute="bottom" secondItem="g8K-mQ-KVe" secondAttribute="bottom" id="iYN-9o-Y3C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JKH-43-n22"/>
                     </view>
@@ -428,7 +451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMH-eg-CXf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1108" y="-553"/>
+            <point key="canvasLocation" x="1108" y="-553.67316341829087"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="VoL-dS-cZ8">
@@ -460,4 +483,5 @@
         <image name="left-arrow.png" width="20" height="20"/>
         <image name="share-5.png" width="512" height="512"/>
     </resources>
+    <color key="tintColor" red="0.80000000000000004" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
 </document>

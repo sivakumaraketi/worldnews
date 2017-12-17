@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let renderedImage = backArrowImage?.withRenderingMode(.alwaysOriginal)
             UINavigationBar.appearance().backIndicatorImage = renderedImage
             UINavigationBar.appearance().backIndicatorTransitionMaskImage = renderedImage
+            
          
             
         //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: UIBarMetrics.default)

@@ -94,7 +94,7 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
         }else if getname == "Italy" {
             country = "it"
         }
-        let jsonURL = "https://newsapi.org/v1/sources?country=\(country)&key=f82b74f968a840d29cc8d70077d6951b"
+        let jsonURL = "https://newsapi.org/v2/sources?country=\(country)&apiKey=f82b74f968a840d29cc8d70077d6951b"
         
         //print("url:", jsonURL)
        // print("country:", country)
