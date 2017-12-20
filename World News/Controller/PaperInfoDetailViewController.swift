@@ -12,6 +12,8 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
     
     @IBOutlet weak var topbar: UITabBarItem!
     
+    
+    
     func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         //This method will be called when user changes tab.
         if(item.tag == 1) {
@@ -33,7 +35,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-         return self.articles?.count ?? 0
+         return self.articles!.count ?? 0
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -56,12 +58,12 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         cell.selectedBackgroundView = backgroundView
         cell.layer.cornerRadius=10
         
-        cell.author.text = self.articles?[indexPath.item].author ?? "NA"
-        cell.title.text = self.articles?[indexPath.item].title ?? ""
-        cell.desc.text = self.articles?[indexPath.item].desc
+        cell.author.text = self.articles![indexPath.item].author ?? "NA"
+        cell.title.text = self.articles![indexPath.item].title ?? ""
+        cell.desc.text = self.articles![indexPath.item].desc
         //cell.morelink.addTarget(self, action: #selector(PaperDetailTableViewCell.morelink(_:)), for: .touchUpInside)
         
-       var urlvalue = (self.articles?[indexPath.item].url)!
+       var urlvalue = (self.articles![indexPath.item].url)!
         
         cell.onButtonTapped = {
             print("more link tapped")
@@ -81,17 +83,30 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
       print("urlvalue1:", urlvalue)
         
         
-       // cell.url.text = self.articles?[indexPath.item].url
+       // cell.url.text = self.articles![indexPath.item].url
         
-        let urlimage = self.articles?[indexPath.item].urlimage
+        let urlimage = self.articles![indexPath.item].urlimage
         if urlimage != nil{
           //  let data = NSData(contentsOf: (urlimage as? URL)!)
            // cell.imageView?.image = UIImage(data: data! as Data)
-        cell.urlimage.downloadImage(from: (self.articles?[indexPath.item].urlimage)!)
+        cell.urlimage.downloadImage(from: (self.articles![indexPath.item].urlimage)!)
         }
-        //cell.urlimage.downloadImage(from: (self.articles?[indexPath.item].urlimage)!)
+        //cell.urlimage.downloadImage(from: (self.articles![indexPath.item].urlimage)!)
         return cell
         
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == (self.articles?.count)! - 1{
+            
+        }
+    }
+    
+    func moreData(){
+        for _ in 0...9 {
+         //   self.articles?.append(self.articles?.last! + 1)
+        }
+        tableview.reloadData()
     }
     
     @IBAction func MoreLinkClicked(_ sender: UIButton) {
@@ -125,7 +140,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         
         //let jsonURL = "https://newsapi.org/v2/articles?source=\(getid)&apikey=f82b74f968a840d29cc8d70077d6951b"
           
-           let jsonURL = "https://newsapi.org/v2/top-headlines?sources=\(getid)&apiKey=f82b74f968a840d29cc8d70077d6951b"
+           let jsonURL = commonurl + "top-headlines?sources=\(getid)&" + apiKey
             
         
       //  print("url:", jsonURL)
@@ -164,7 +179,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
                              print("description:", description)
                              print("url:", url)*/
                         }
-                        self.articles?.append(article)
+                        self.articles!.append(article)
                     }
                 }
                 DispatchQueue.main.async {
@@ -193,7 +208,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
 
        // let Storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let Dvc = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
-      //  Dvc.url = self.articles?[indexPath.item].url
+      //  Dvc.url = self.articles![indexPath.item].url
         
        // self.navigationController?.pushViewController(Dvc, animated: true)
         
@@ -232,7 +247,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
 }
 
     //  let index = self.collectionView.indexPathsForSelectedItems?.url
-    //Dvc.url = self.articles?[indexPath.item].url
+    //Dvc.url = self.articles![indexPath.item].url
     // Pass the selected object to the new view controller.
 
 

@@ -286,8 +286,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" text="Enter Search " translatesAutoresizingMaskIntoConstraints="NO" id="Jj7-iM-gGk">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Knj-bU-9Zs"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="wtn-r6-tbv" id="9je-JE-JAk"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uXj-Ep-Xc1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -431,15 +441,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="Jj7-iM-gGk" firstAttribute="top" secondItem="bbW-GI-fJz" secondAttribute="top" id="3Th-sj-EQ8"/>
+                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="top" secondItem="Jj7-iM-gGk" secondAttribute="bottom" constant="20" id="56V-DW-l5g"/>
+                            <constraint firstItem="Jj7-iM-gGk" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="6Yn-mt-LrC"/>
                             <constraint firstItem="g8K-mQ-KVe" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="7EN-OR-oj8"/>
                             <constraint firstItem="g8K-mQ-KVe" firstAttribute="centerX" secondItem="bbW-GI-fJz" secondAttribute="centerX" id="9EO-pi-Owe"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="Bfi-vE-6dJ"/>
                             <constraint firstItem="g8K-mQ-KVe" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="N3g-N2-3Vr"/>
                             <constraint firstItem="1zC-3e-ele" firstAttribute="centerX" secondItem="bbW-GI-fJz" secondAttribute="centerX" id="SQY-EJ-u3J"/>
-                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="top" secondItem="bbW-GI-fJz" secondAttribute="top" id="WDi-4b-I6T"/>
                             <constraint firstItem="1zC-3e-ele" firstAttribute="centerY" secondItem="bbW-GI-fJz" secondAttribute="centerY" id="XhP-fW-qsQ"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="bottom" secondItem="JKH-43-n22" secondAttribute="bottom" id="a0b-ag-ARn"/>
                             <constraint firstItem="uXj-Ep-Xc1" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="bya-Ef-2pR"/>
+                            <constraint firstItem="Jj7-iM-gGk" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="d95-Ov-aOH"/>
                             <constraint firstItem="JKH-43-n22" firstAttribute="bottom" secondItem="g8K-mQ-KVe" secondAttribute="bottom" id="iYN-9o-Y3C"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JKH-43-n22"/>
