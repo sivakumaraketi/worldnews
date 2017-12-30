@@ -8,38 +8,21 @@
 
 import UIKit
 
-class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITabBarDelegate {
+class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,UITabBarDelegate,UISearchBarDelegate {
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    @IBOutlet weak var topbar: UITabBarItem!
-    
-    
-    
-    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        //This method will be called when user changes tab.
-        if(item.tag == 1) {
-            //your code for tab item 1
-            print("1 selected")
-        }
-        else if(item.tag == 2) {
-            //your code for tab item 2
-            
-            print("2 selected")
-        }else if(item.tag == 3){
-            print("3 selected")
-        }
-        
-    }
-   
+    @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var activity: UIActivityIndicatorView!
     var rechability:Reachability?
+    
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-         return self.articles!.count ?? 0
+        return self.articles.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -58,13 +41,14 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
         cell.selectedBackgroundView = backgroundView
         cell.layer.cornerRadius=10
         
-        cell.author.text = self.articles![indexPath.item].author ?? "NA"
-        cell.title.text = self.articles![indexPath.item].title ?? ""
-        cell.desc.text = self.articles![indexPath.item].desc
+        cell.author.text = self.articles[indexPath.item].author ?? "NA"
+        cell.title.text = self.articles[indexPath.item].title ?? "No Title"
+        cell.desc.text = self.articles[indexPath.item].desc ?? "No Desc"
+        
         //cell.morelink.addTarget(self, action: #selector(PaperDetailTableViewCell.morelink(_:)), for: .touchUpInside)
         
-       var urlvalue = (self.articles![indexPath.item].url)!
-        
+        let urlvalue = self.articles[indexPath.item].url
+        //print("urlvalueshowing:", urlvalue)
         cell.onButtonTapped = {
             print("more link tapped")
             let Storyboard = UIStoryboard(name: "Main",bundle:nil)
@@ -83,51 +67,57 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
       print("urlvalue1:", urlvalue)
         
         
-       // cell.url.text = self.articles![indexPath.item].url
+       // cell.url.text = self.articles[indexPath.item].url
         
-        let urlimage = self.articles![indexPath.item].urlimage
+        let urlimage = self.articles[indexPath.item].urlimage
         if urlimage != nil{
           //  let data = NSData(contentsOf: (urlimage as? URL)!)
            // cell.imageView?.image = UIImage(data: data! as Data)
-        cell.urlimage.downloadImage(from: (self.articles![indexPath.item].urlimage)!)
+        cell.urlimage.downloadImage(from: (self.articles[indexPath.item].urlimage)!)
         }
-        //cell.urlimage.downloadImage(from: (self.articles![indexPath.item].urlimage)!)
+        //cell.urlimage.downloadImage(from: (self.articles[indexPath.item].urlimage)!)
         return cell
         
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == (self.articles?.count)! - 1{
+        if indexPath.row == (self.articles.count) - 1{
             
         }
     }
     
-    func moreData(){
-        for _ in 0...9 {
-         //   self.articles?.append(self.articles?.last! + 1)
-        }
-        tableview.reloadData()
-    }
+   
     
     @IBAction func MoreLinkClicked(_ sender: UIButton) {
         
         self.performSegue(withIdentifier: "MoreLinkVC", sender: urlvalue)
     }
 
-    
-    @IBOutlet weak var tableview: UITableView!
+
     
     var getname = String()
     var getid = String()
-    var articles: [Article]? = []
+    var articles: [Article] = []
     
+    
+   var jsonURL = String()
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+         NSLog("searchbarclicked")
+        searchBar.resignFirstResponder()
+        
+        let text = searchBar.text
+        jsonURL = commonurl + "everything?q=\(text!)&" + apiKey
+       // let request = URLRequest(url: jsonURL!)
+       self.loadtabledata()
+        print("urltext:", jsonURL)
+    }
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         
-
         self.rechability = Reachability.init()
         
         if ((self.rechability!.connection) != .none){
@@ -138,16 +128,30 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
          self.navigationItem.title = getname
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
-        //let jsonURL = "https://newsapi.org/v2/articles?source=\(getid)&apikey=f82b74f968a840d29cc8d70077d6951b"
-          
-           let jsonURL = commonurl + "top-headlines?sources=\(getid)&" + apiKey
-            
+     
+          jsonURL = commonurl + "top-headlines?sources=\(getid)&" + apiKey
         
-      //  print("url:", jsonURL)
+            searchBar.text = ""
+        
+       print("urlpressed:", jsonURL)
       
+        
+        
+             self.loadtabledata()
+       
+        
+        }else {
+            print("Internet connection FAILED")
+            let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+            
+            
+        }
+    }
+    
+    func loadtabledata(){
         guard let url = URL(string: jsonURL) else{
             return}
-        
         let task = URLSession.shared.dataTask(with: url){(data, response, error) in
             if error != nil {
                 print(error)
@@ -158,6 +162,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
             self.articles = [Article]()
             
             do {
+                
                 guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any] else{return}
                 
                 if let articlesFromJson = json["articles"] as?[[String : AnyObject]]{
@@ -174,41 +179,32 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
                             article.url = url
                             article.urlimage = urlimage
                             
-                           
+                            
                             /* print("name:", name)
                              print("description:", description)
                              print("url:", url)*/
                         }
-                        self.articles!.append(article)
+                        self.articles.append(article)
                     }
                 }
                 DispatchQueue.main.async {
                     self.tableview.reloadData()
                     self.activity.stopAnimating()
                 }
-               
+                
                 
             }catch  let jsonErr{
                 print("Erro serializing json:", jsonErr)}
         }; task.resume()
-        
-        }else {
-            print("Internet connection FAILED")
-            let alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
-            
-            
-        }
+       
     }
-    
-    
   /*  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
         self.performSegue(withIdentifier: "MorelinkVC", sender: urlvalue)
 
        // let Storyboard = UIStoryboard(name: "Main", bundle: nil)
         //let Dvc = Storyboard.instantiateViewController(withIdentifier: "WebviewViewController") as! WebviewViewController
-      //  Dvc.url = self.articles![indexPath.item].url
+      //  Dvc.url = self.articles[indexPath.item].url
         
        // self.navigationController?.pushViewController(Dvc, animated: true)
         
@@ -247,7 +243,7 @@ class PaperInfoDetailViewController: UIViewController,UITableViewDelegate,UITabl
 }
 
     //  let index = self.collectionView.indexPathsForSelectedItems?.url
-    //Dvc.url = self.articles![indexPath.item].url
+    //Dvc.url = self.articles[indexPath.item].url
     // Pass the selected object to the new view controller.
 
 
@@ -273,7 +269,9 @@ extension UIImageView {
         }
        
         task.resume()
-         }
+        }else{
+            print("image not availble")
+        }
     }
 }
     

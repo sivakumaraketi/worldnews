@@ -64,6 +64,12 @@ class WebviewViewController: UIViewController,UIWebViewDelegate {
     }
     
     
+    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        print("Strat to load")
+    }
+    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+        print("finish to load")
+    }
     /*private func webViewDidStartLoad(_ webView : WKWebView!){
         self.activity.startAnimating()
         

@@ -15,6 +15,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     var name:NSArray = []
     var imageArr:NSArray = []
     var countrycode:NSArray = []
+    //var countrysArray = [Country]()
     
     // Set the spacing between sections
     
@@ -68,9 +69,17 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         if ((self.rechability!.connection) != .none){
         // Do any additional setup after loading the view.
+            //Load Cars from plist into Array
+        /*    let path = Bundle.main.path(forResource: "Country", ofType: "plist")
+            let dictArray = NSArray(contentsOfFile: path!)
+            
+            for countryItem in dictArray! {
+                let newCountry : Country = Country(type:(countryItem.objectForKey("name")) as! String, maker: (countryItem.objectForKey("countrycode")) as! String, model: (countryItem.objectForKey("imagename")) as! String, image:
+                countrysArray.append(newCountry)
+            }*/
         
         name = ["India","United States","United Kingdom","Australia","Germany","Italy"]
-        countrycode = ["in","us","ac","de","it"]
+       countrycode = ["in","us","ac","de","it"]
         imageArr = [UIImage(named: "india")!,UIImage(named: "united-states")!,UIImage(named: "united-kingdom")!,UIImage(named: "australia")!,UIImage(named: "germany")!,UIImage(named: "italy")!]
         }else {
             print("Internet connection FAILED")

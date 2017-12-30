@@ -286,23 +286,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" text="Enter Search " translatesAutoresizingMaskIntoConstraints="NO" id="Jj7-iM-gGk">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="Knj-bU-9Zs"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="wtn-r6-tbv" id="9je-JE-JAk"/>
-                                </connections>
-                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uXj-Ep-Xc1">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Enter Search " id="Jj7-iM-gGk">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="44" id="Knj-bU-9Zs"/>
+                                    </constraints>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="wtn-r6-tbv" id="n4O-VU-pEo"/>
+                                    </connections>
+                                </searchBar>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="PaperDetailTableViewCell" rowHeight="380" id="8Cb-jz-laf" customClass="PaperDetailTableViewCell" customModule="World_News" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="380"/>
+                                        <rect key="frame" x="0.0" y="72" width="375" height="380"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8Cb-jz-laf" id="OAN-Hn-4VN">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="380"/>
@@ -415,25 +416,6 @@
                                     <outlet property="delegate" destination="wtn-r6-tbv" id="3Og-T0-IWH"/>
                                 </connections>
                             </tableView>
-                            <tabBar hidden="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g8K-mQ-KVe">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="49" id="fmf-zm-ddy"/>
-                                    <constraint firstAttribute="width" constant="375" id="ozF-hm-bIq"/>
-                                </constraints>
-                                <items>
-                                    <tabBarItem title="Top" id="7CB-rf-3Es">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
-                                    </tabBarItem>
-                                    <tabBarItem title="Popular" id="6os-Ni-iMy">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
-                                    </tabBarItem>
-                                    <tabBarItem title="Latest" id="neu-5S-2fi">
-                                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-16"/>
-                                    </tabBarItem>
-                                </items>
-                            </tabBar>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="1zC-3e-ele">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <color key="color" red="1" green="0.72683487270000002" blue="0.71042793670000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -441,25 +423,19 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Jj7-iM-gGk" firstAttribute="top" secondItem="bbW-GI-fJz" secondAttribute="top" id="3Th-sj-EQ8"/>
-                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="top" secondItem="Jj7-iM-gGk" secondAttribute="bottom" constant="20" id="56V-DW-l5g"/>
-                            <constraint firstItem="Jj7-iM-gGk" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="6Yn-mt-LrC"/>
-                            <constraint firstItem="g8K-mQ-KVe" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="7EN-OR-oj8"/>
-                            <constraint firstItem="g8K-mQ-KVe" firstAttribute="centerX" secondItem="bbW-GI-fJz" secondAttribute="centerX" id="9EO-pi-Owe"/>
-                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="Bfi-vE-6dJ"/>
-                            <constraint firstItem="g8K-mQ-KVe" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="N3g-N2-3Vr"/>
+                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="top" secondItem="bbW-GI-fJz" secondAttribute="top" id="PYF-sd-UOJ"/>
+                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="Qpf-ax-aDM"/>
                             <constraint firstItem="1zC-3e-ele" firstAttribute="centerX" secondItem="bbW-GI-fJz" secondAttribute="centerX" id="SQY-EJ-u3J"/>
                             <constraint firstItem="1zC-3e-ele" firstAttribute="centerY" secondItem="bbW-GI-fJz" secondAttribute="centerY" id="XhP-fW-qsQ"/>
-                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="bottom" secondItem="JKH-43-n22" secondAttribute="bottom" id="a0b-ag-ARn"/>
-                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="trailing" secondItem="JKH-43-n22" secondAttribute="trailing" id="bya-Ef-2pR"/>
-                            <constraint firstItem="Jj7-iM-gGk" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="d95-Ov-aOH"/>
-                            <constraint firstItem="JKH-43-n22" firstAttribute="bottom" secondItem="g8K-mQ-KVe" secondAttribute="bottom" id="iYN-9o-Y3C"/>
+                            <constraint firstItem="JKH-43-n22" firstAttribute="bottom" secondItem="uXj-Ep-Xc1" secondAttribute="bottom" id="dsy-a5-0gK"/>
+                            <constraint firstItem="uXj-Ep-Xc1" firstAttribute="leading" secondItem="JKH-43-n22" secondAttribute="leading" id="zsO-ry-0Q4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JKH-43-n22"/>
                     </view>
                     <connections>
                         <outlet property="activity" destination="1zC-3e-ele" id="Rm8-nc-MmC"/>
-                        <outlet property="tableview" destination="uXj-Ep-Xc1" id="YL6-1Y-RA2"/>
+                        <outlet property="searchBar" destination="Jj7-iM-gGk" id="EEC-O5-Mh0"/>
+                        <outlet property="tableview" destination="uXj-Ep-Xc1" id="eXg-0S-V5f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMH-eg-CXf" userLabel="First Responder" sceneMemberID="firstResponder"/>

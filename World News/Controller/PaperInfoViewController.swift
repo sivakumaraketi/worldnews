@@ -122,6 +122,8 @@ class PaperInfoViewController: UIViewController,UITableViewDelegate,UITableViewD
                                 /* print("name:", name)
                                  print("description:", description)
                                  print("url:", url)*/
+                                
+                                
                             }
                             self.sources?.append(source)
                         }

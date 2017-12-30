@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+   Country.plist
+   World News
+
+   Created by Siva Kumar Aketi on 12/22/17.
+   Copyright (c) 2017 Siva Kumar Aketi. All rights reserved.
+-->
+<plist version="1.0">
+    <array>
+        <dict>
+            <key>name</key>
+            <string>India</string>
+             <key>countrycode</key>
+             <string>in</string>
+             <key>imgname</key>
+            <string>india.png</string>
+            
+        </dict>
+    </array>
+</plist>
