@@ -8,11 +8,16 @@
 
 import UIKit
 
+
+
 class TableViewCell: UITableViewCell {
+    
+ 
 
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgImage: UIImageView!
     
+    @IBOutlet weak var backgroundview: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,9 +26,16 @@ class TableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        backgroundview.layer.cornerRadius=10
+        backgroundview.layer.masksToBounds = false
+       backgroundview.backgroundColor = bgcolor
 
+       
         // Configure the view for the selected state
     }
     
+    
+   
 
 }
+ 

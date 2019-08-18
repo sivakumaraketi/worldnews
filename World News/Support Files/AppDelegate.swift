@@ -4,7 +4,7 @@
 //
 //  Created by Siva Kumar Aketi on 10/30/17.
 //  Copyright © 2017 Siva Kumar Aketi. All rights reserved.
-//
+
 
 import UIKit
 
@@ -13,12 +13,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        return true
+    func application(_ application: UIApplication,
+                              didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool
+    {
+    // Set status bar text color to white
+        UIApplication.shared.statusBarStyle = .lightContent; let statusBar :UIView = UIApplication.shared.value(forKey: "statusBar") as! UIView; if statusBar.responds(to: #selector(setter: UIView.backgroundColor)){
+            statusBar.backgroundColor = UIColor.white
+            
+            // Override point for customization after application launch.
+            
+            // Change the appearance of back button
+           
+           
+            //setBackgroundImage(navBgImage, for: .default)
+     /*  let backImage = UIImage(named: "left-arrow")?.withRenderingMode(.alwaysOriginal).stretchableImage(withLeftCapWidth: 0, topCapHeight: 0)
+          UINavigationBar.appearance().backIndicatorImage = backImage
+            UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage*/
+            
+            
+                // disable image stretching by defining left and top caps.
+            let backArrowImage  = UIImage(named: "left-arrow") // set your back button image here
+            let renderedImage = backArrowImage?.withRenderingMode(.alwaysOriginal)
+            UINavigationBar.appearance().backIndicatorImage = renderedImage
+            UINavigationBar.appearance().backIndicatorTransitionMaskImage = renderedImage
+            
+         
+            
+        //UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffsetMake(-200, 0), for: UIBarMetrics.default)
+            
+            
+        }
+    return true
     }
-
+   
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

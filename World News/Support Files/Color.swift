@@ -1,0 +1,26 @@
+//
+//  Color.swift
+//  World News
+//
+//  Created by Siva Kumar Aketi on 11/16/17.
+//  Copyright © 2017 Siva Kumar Aketi. All rights reserved.
+//
+
+import UIKit
+
+let bgcolor = UIColor.init(netHex: 0xFFA4A2)
+let paperbgcolor = UIColor.init(netHex: 0xF8F8F8)
+let txtcolor = UIColor.init(netHex: 0x47525E)
+
+extension UIColor {
+    convenience init(red: Int, green: Int, blue: Int) {
+        assert(red >= 0 && red <= 255, "Invalid red component")
+        assert(green >= 0 && green <= 255, "Invalid green component")
+        assert(blue >= 0 && blue <= 255, "Invalid blue component")
+        self.init(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
+    }
+    
+    convenience init(netHex:Int) {
+        self.init(red:(netHex >> 16) & 0xff, green:(netHex >> 8) & 0xff, blue:netHex & 0xff)
+    }
+}
